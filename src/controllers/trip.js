@@ -11,6 +11,7 @@ import jwt, { Secret } from "jsonwebtoken";
 
 export const getAllTrips = async (req, res, next) => {
   const paramsId = req.params.id;
+  console.log(req.token)
   if (!paramsId && !req.token.is_admin) {
     try {
       const { id } = req.token;
