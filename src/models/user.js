@@ -20,7 +20,7 @@ export function findUser(id) {
 }
 
 export function findUsers() {
-  return db("users");
+  return db("user");
 }
 
 export function createUser(user) {
@@ -39,3 +39,6 @@ export function deleteUser(id) {
     .where({ id })
     .del();
 }
+
+
+export const allUsers = () => db('user');

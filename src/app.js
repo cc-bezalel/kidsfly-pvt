@@ -14,11 +14,11 @@ server.use(express.static(path.resolve(path.join(__dirname, "../public"))));
 server.get("/", (__, res) => res.sendFile("index.html"));
 
 //login
-server.route("/login").get(login.login);
+server.route("/login").post(login.login);
 
 server
   .route("/users")
-  .get(verifyToken, user.get)
+  .get(verifyToken, user.getAllUsers)
   .post(user.post);
 
 //Auth required beyond this line
@@ -31,7 +31,7 @@ server
 
 server
   .route("/users/:id")
-  .get(user.get)
+  .get(verifyToken, user.get)
   .put(user.put)
   .delete(user.deleteU);
 
@@ -40,6 +40,13 @@ server
   .get(trip.get)
   .put(trip.put)
   .delete(trip.deleteT);
+
+  server.use('*', (req, res) =>
+  res.status(404).json({
+    status: 404,
+    message: 'No endpoint matches that URL.'
+  })
+);
 
 // server.use(errorHandler);
 

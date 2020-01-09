@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
     req.token = decoded;
     next();
   } catch (e) {
-    res.json(e);
+    return res.status(404).json({ msg: "401: Unathorized, provide your token" });
   }
 };
 
