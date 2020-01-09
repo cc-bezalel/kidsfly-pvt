@@ -29,3 +29,7 @@ export function findTripById(id) {
 export function findTripByAirport(airport) {
   return db("trip").where({ airport: airport });
 }
+
+
+export const getTrips = () => db('trip');
+

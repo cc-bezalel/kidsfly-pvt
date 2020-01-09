@@ -26,7 +26,7 @@ server.use(verifyToken);
 
 server
   .route("/trips")
-  .get(trip.get)
+  .get(trip.getAllTrips)
   .post(trip.post);
 
 server
